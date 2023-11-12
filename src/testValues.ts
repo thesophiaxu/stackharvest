@@ -1756,3 +1756,23 @@ export const movies: Array<{
     certificate: 'PG-13',
   },
 ]
+
+export const restaurants: Array<{
+  url: string
+  title: string
+}> = [
+  {
+    url: 'https://www.opentable.ca/r/la-pizza-and-la-pasta-eataly-yorkville-toronto?originId=1e240c0d-8f8a-43c4-9207-f99b763d06ac&corrid=1e240c0d-8f8a-43c4-9207-f99b763d06ac&avt=eyJ2IjoyLCJtIjoxLCJwIjoxLCJzIjowLCJuIjowfQ',
+    title: 'La Pizza & La Pasta - Eataly Yorkville',
+  },
+]
+
+export const tweets: Array<{
+  url: string
+  author: string
+}> = [
+  {
+    url: 'https://twitter.com/thepericulum/status/1723616278366265657',
+    author: 'thepericulum',
+  },
+]

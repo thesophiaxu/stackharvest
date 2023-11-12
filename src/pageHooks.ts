@@ -9,6 +9,7 @@ import {
   findLikelyDataObjects,
   getVisibleDataObjects,
   getGuessedIdLike,
+  getGuessedTitleLike,
 } from './extractor'
 
 export async function tryExtractPageObj() {
@@ -25,14 +26,29 @@ export async function tryExtractPageObj() {
       .filter((el: any) => el.length)
       .pop() || ''
   const hrefQuery = window.location.href.split('?')[1]
+  const pageTitle = document.title
 
   // do matches
   const allObjs = Object.values(visibleObjs).flatMap((el) => el.objects)
-  const pageObjs = allObjs.filter((el) => {
+  const pageObjsId = allObjs.filter((el) => {
     const elId = getGuessedIdLike(el, true)
-    return elId && (lastHrefPart?.startsWith(elId) || hrefQuery?.includes(elId))
+    if (elId && (lastHrefPart?.startsWith(elId) || hrefQuery?.includes(elId))) {
+      return true
+    }
+    return false
   })
-  return pageObjs[0]
+  const pageObjsTitle = allObjs.filter((el) => {
+    const elTitle = getGuessedTitleLike(el, true)
+    if (
+      elTitle &&
+      pageTitle?.includes(elTitle) &&
+      getGuessedIdLike(el, false)
+    ) {
+      return true
+    }
+    return false
+  })
+  return pageObjsId[0] || pageObjsTitle[0]
 }
 
 function _init() {

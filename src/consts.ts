@@ -32,4 +32,6 @@ export const uselessPathNames = [
   'data',
 ]
 
+export const titlelikeKeys = ['title', 'name', 'text', 'label']
+
 export const ignoreList = ['localhost', 'mail.google.com']

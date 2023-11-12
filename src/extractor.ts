@@ -21,6 +21,7 @@ import {
   ignoreList,
   listItemRelated,
   permittedKeys,
+  titlelikeKeys,
   uiNuggetAttrKeywords,
   uselessPathNames,
 } from './consts'
@@ -386,6 +387,23 @@ export function getGuessedIdLike(
   if (idLikeValues[0]) maybeId = idLikeValues[0]
 
   return maybeId
+}
+
+export function getGuessedTitleLike(
+  obj: any,
+  exactOnly = false
+): string | undefined {
+  if (typeof obj !== 'object' || !obj) return
+  let maybeTitle: string | undefined = undefined
+  // try to get exact title first
+  for (const k of titlelikeKeys) {
+    if (obj[k]) {
+      maybeTitle = obj[k]
+      break
+    }
+  }
+  if (maybeTitle || exactOnly) return maybeTitle
+  return maybeTitle
 }
 
 export function getCategoriesFromObjects(objs: MatchResult[]) {
